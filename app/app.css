@@ -2,11 +2,124 @@
 @tailwind components;
 @tailwind utilities;
 
+@font-face {
+  font-family: 'Montserrat';
+  src: url('/fonts/Montserrat-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: optional;
+  unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113,
+    U+2C60-2C7F, U+A720-A7FF;
+}
+
+@font-face {
+  font-family: 'Montserrat';
+  src: url('/fonts/Montserrat-SemiBold.woff2') format('woff2');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+  unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113,
+    U+2C60-2C7F, U+A720-A7FF;
+}
+
+@font-face {
+  font-family: 'Montserrat';
+  src: url('/fonts/Montserrat-Bold.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+  unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113,
+    U+2C60-2C7F, U+A720-A7FF;
+}
+
 html,
 body {
   @apply bg-white dark:bg-gray-950;
 
   @media (prefers-color-scheme: dark) {
     color-scheme: dark;
+  }
+}
+
+@layer base {
+  body {
+    @apply font-sans font-normal text-gray-700 bg-white;
+  }
+
+  html.dark > body {
+    @apply text-gray-200 bg-gray-900;
+  }
+
+  a {
+    @apply text-blue-500 dark:text-blue-400;
+    @apply transition-colors;
+
+    &:hover {
+      @apply text-blue-700 dark:text-blue-600;
+    }
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-serif font-bold;
+  }
+
+  h1 {
+    @apply text-gray-700 dark:text-gray-200;
+    @apply text-3xl sm:text-5xl lg:text-6xl;
+    @apply mb-2 lg:mb-3;
+  }
+
+  h2 {
+    @apply text-gray-600 dark:text-gray-400;
+    @apply text-2xl sm:text-4xl;
+    @apply mb-2 lg:mb-3;
+  }
+
+  h3 {
+    @apply text-xl sm:text-2xl;
+  }
+
+  h4 {
+    @apply text-lg sm:text-xl;
+  }
+
+  h5 {
+    @apply text-lg;
+  }
+
+  h6 {
+    @apply text-base;
+  }
+
+  p {
+    line-height: 1.75;
+  }
+
+  u {
+    @apply no-underline relative;
+  }
+  u::after {
+    @apply content-[''] block absolute w-full h-1 bottom-0 left-0 bg-blue-400 opacity-50;
+  }
+}
+
+@layer components {
+  .header-title {
+    @apply m-0 text-xl text-gray-500 dark:text-gray-400 relative;
+  }
+
+  .header-title::before {
+    @apply content-[''] absolute bottom-1 left-0 w-full h-2 bg-blue-300 -z-10;
+    @apply opacity-0 scale-0 transform origin-center;
+    @apply transition-all;
+  }
+
+  .header-title:hover::before {
+    @apply opacity-80 scale-100;
   }
 }
