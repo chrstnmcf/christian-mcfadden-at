@@ -1,7 +1,7 @@
-import * as React from 'react';
+import { useEffect, useState } from 'react';
 
 export default function useStickyHeader(offset: number) {
-  const [sticky, setSticky] = React.useState(false);
+  const [sticky, setSticky] = useState(false);
 
   const handleScroll = () => {
     const { scrollY } = window;
@@ -12,7 +12,7 @@ export default function useStickyHeader(offset: number) {
     }
   };
 
-  React.useEffect(() => {
+  useEffect(() => {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   });
