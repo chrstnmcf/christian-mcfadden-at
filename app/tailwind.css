@@ -1,6 +1,5 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+@config "../tailwind.config.ts";
 
 @font-face {
   font-family: 'Montserrat';
@@ -53,10 +52,10 @@ body {
   a {
     @apply text-blue-500 dark:text-blue-400;
     @apply transition-colors;
+  }
 
-    &:hover {
-      @apply text-blue-700 dark:text-blue-600;
-    }
+  a:hover {
+    @apply text-blue-700 dark:text-blue-600;
   }
 
   h1,
@@ -103,6 +102,7 @@ body {
   u {
     @apply no-underline relative;
   }
+  
   u::after {
     @apply content-[''] block absolute w-full h-1 bottom-0 left-0 bg-blue-400 opacity-50;
   }
