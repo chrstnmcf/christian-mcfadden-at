@@ -123,3 +123,30 @@ body {
     @apply opacity-80 scale-100;
   }
 }
+
+@layer utilities {
+  .container {
+    @apply mx-auto px-4;
+    max-width: 100%;
+  }
+
+  @media (min-width: 640px) {
+    .container {
+      @apply px-5;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .container {
+      @apply px-6;
+      max-width: 1024px;
+    }
+  }
+
+  @media (min-width: 1280px) {
+    .container {
+      @apply px-8;
+      max-width: 1024px;
+    }
+  }
+}
