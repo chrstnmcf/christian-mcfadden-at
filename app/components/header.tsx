@@ -1,20 +1,21 @@
 import { Link } from 'react-router';
 
+import { useTheme } from '~/contexts/ThemeContext';
 import useStickyHeader from '~/hooks/useStickyHeader';
 import { classNames } from '~/utils/helper';
 
 import { Bluesky } from './social/bluesky';
 import { GitHub } from './social/github';
 import { LinkedIn } from './social/linkedin';
-
-// import Toggle from './Toggle';
+import Toggle from './toggle';
 
 export function Header() {
   const sticky = useStickyHeader(32);
+  const { isDark, setTheme } = useTheme();
 
   const headerClass = classNames(
-    'z-20 flex bg-white dark:bg-gray-900 h-12 transition-shadow inset-x-0',
-    !sticky && 'absolute top-8',
+    'z-20 flex bg-white/80 backdrop-blur-xl dark:bg-gray-900/80 h-20 transition-shadow inset-x-0',
+    !sticky && 'absolute top-0',
     sticky && `fixed h-12 top-0 shadow-sm dark:border-b dark:border-gray-800`,
   );
 
@@ -63,9 +64,13 @@ export function Header() {
             </a>
           </li>
 
-          {/* <li className="flex">
-            <Toggle label="Toggle dark mode" onClick={() => {}} />
-          </li> */}
+          <li className="flex">
+            <Toggle 
+              label="Toggle dark mode" 
+              active={isDark}
+              onClick={() => setTheme(isDark ? 'light' : 'dark')} 
+            />
+          </li>
         </ul>
       </nav>
     </header>

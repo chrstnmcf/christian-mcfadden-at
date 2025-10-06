@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 import { classNames } from '~/utils/helper';
 
@@ -49,11 +49,17 @@ export default function Toggle({
 }: ToggleProps) {
   const [activeState, setActiveState] = useState(active);
 
+  // Update internal state when active prop changes
+  useEffect(() => {
+    setActiveState(active);
+  }, [active]);
+
   const toggled = () => {
-    setActiveState(!activeState);
+    const newState = !activeState;
+    setActiveState(newState);
 
     if (onClick) {
-      onClick(!activeState);
+      onClick(newState);
     }
   };
 

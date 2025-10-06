@@ -119,6 +119,10 @@ body {
     @apply transition-all;
   }
 
+  .dark .header-title::before {
+    @apply bg-blue-300/80;
+  }
+
   .header-title:hover::before {
     @apply opacity-80 scale-100;
   }

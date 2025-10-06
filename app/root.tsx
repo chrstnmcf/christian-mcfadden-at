@@ -9,15 +9,48 @@ import {
 } from 'react-router';
 
 import type { Route } from './+types/root';
+import { themeCookie } from './cookies.server';
+import { ThemeProvider } from './contexts/ThemeContext';
+import { type Theme } from './utils/cookies';
 import stylesheet from './tailwind.css?url';
 
 export const links: Route.LinksFunction = () => [
   { rel: 'stylesheet', href: stylesheet },
 ];
 
-export function Layout({ children }: { children: ReactNode }) {
+export const loader = async ({ request }: Route.LoaderArgs) => {
+  const cookieHeader = request.headers.get('Cookie');
+  let theme = 'system';
+  
+  // Simple cookie parsing as fallback
+  if (cookieHeader) {
+    const match = cookieHeader.match(/theme=([^;]+)/);
+    if (match) {
+      const cookieTheme = match[1];
+      if (cookieTheme === 'light' || cookieTheme === 'dark' || cookieTheme === 'system') {
+        theme = cookieTheme;
+      }
+    }
+  }
+  
+  // Try React Router cookie parsing as primary method
+  try {
+    const parsedTheme = await themeCookie.parse(cookieHeader);
+    if (parsedTheme && (parsedTheme === 'light' || parsedTheme === 'dark' || parsedTheme === 'system')) {
+      theme = parsedTheme;
+    }
+  } catch (error) {
+    console.error('Error parsing theme cookie with React Router:', error);
+  }
+  
+  return { theme };
+};
+
+export function Layout({ children, loaderData }: Route.ComponentProps & { children: ReactNode }) {
+  const theme = (loaderData?.theme as Theme) || 'system';
+
   return (
-    <html lang="en">
+    <html lang="en" className={theme ?? ""}>
       <head>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -33,8 +66,14 @@ export function Layout({ children }: { children: ReactNode }) {
   );
 }
 
-export default function App() {
-  return <Outlet />;
+export default function App({ loaderData }: Route.ComponentProps) {
+  const theme = (loaderData?.theme as Theme) || 'system';
+  
+  return (
+    <ThemeProvider initialTheme={theme}>
+      <Outlet />
+    </ThemeProvider>
+  );
 }
 
 export function ErrorBoundary({ error }: Route.ErrorBoundaryProps) {
