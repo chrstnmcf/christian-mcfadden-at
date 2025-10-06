@@ -10,11 +10,11 @@ import { LinkedIn } from './social/linkedin';
 import Toggle from './toggle';
 
 export function Header() {
-  const sticky = useStickyHeader(32);
+  const sticky = useStickyHeader(0);
   const { isDark, setTheme } = useTheme();
 
   const headerClass = classNames(
-    'z-20 flex bg-white/80 backdrop-blur-xl dark:bg-gray-900/80 h-20 transition-shadow inset-x-0',
+    'z-20 flex bg-white/80 backdrop-blur-xl dark:bg-gray-900/80 h-18 transition-shadow inset-x-0',
     !sticky && 'absolute top-0',
     sticky && `fixed h-12 top-0 shadow-sm dark:border-b dark:border-gray-800`,
   );
