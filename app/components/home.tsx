@@ -8,8 +8,8 @@ export function Home() {
           <img className="rounded-full" src={me} alt="Christian" width={240} height={240} />
         </div>
         <div>
-          <h2>Hey there, I&apos;m Christian! 👋</h2>
-          <p>
+          <h2>Hey there, I&apos;m Christian!</h2>
+          <p className="text-lg">
             As a consultant and software engineer, I have a strong passion for web technologies and
             throughout my career, I have had the opportunity to work across different industries. I
             have a strong understanding of both front-end and back-end development and enjoy
@@ -17,7 +17,10 @@ export function Home() {
             methodologies and a user-centric mindset, with a focus on creating simple, clean and
             intuitive user interfaces. I believe that user experience design is a crucial aspect of
             the development process, which is why I prioritize understanding the needs of the users
-            to deliver effective solutions. You want to know more?{' '}
+            to deliver effective solutions.
+          </p>
+          <p>
+            You want to know more?{' '}
             <a href={`mailto:christian@mcfadden.at`} className="font-semibold">
               Get in touch with me!
             </a>

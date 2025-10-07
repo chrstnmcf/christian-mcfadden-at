@@ -75,7 +75,7 @@ body {
 
   h2 {
     @apply text-gray-600 dark:text-gray-400;
-    @apply text-2xl sm:text-4xl;
+    @apply text-2xl sm:text-5xl;
     @apply mb-2 lg:mb-3;
   }
 
@@ -97,6 +97,7 @@ body {
 
   p {
     line-height: 1.75;
+    @apply py-2;
   }
 
   u {
