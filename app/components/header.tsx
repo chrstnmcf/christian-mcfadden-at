@@ -16,7 +16,7 @@ export function Header() {
   const headerClass = classNames(
     'z-20 flex bg-white/80 backdrop-blur-xl dark:bg-gray-900/80 h-18 transition-shadow inset-x-0',
     !sticky && 'absolute top-0',
-    sticky && `fixed h-12 top-0 shadow-sm dark:border-b dark:border-gray-800`,
+    sticky && `fixed h-12 top-0 shadow-sm dark:border-b dark:border-b-gray-800`,
   );
 
   const iconClassName = classNames(

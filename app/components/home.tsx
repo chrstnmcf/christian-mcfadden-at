@@ -19,7 +19,7 @@ export function Home() {
             the development process, which is why I prioritize understanding the needs of the users
             to deliver effective solutions.
           </p>
-          <p>
+          <p className="text-lg">
             You want to know more?{' '}
             <a href={`mailto:christian@mcfadden.at`} className="font-semibold">
               Get in touch with me!

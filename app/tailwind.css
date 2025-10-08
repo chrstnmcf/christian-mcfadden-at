@@ -75,7 +75,7 @@ body {
 
   h2 {
     @apply text-gray-600 dark:text-gray-400;
-    @apply text-2xl sm:text-5xl;
+    @apply text-3xl sm:text-5xl;
     @apply mb-2 lg:mb-3;
   }
 
