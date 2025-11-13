@@ -4,7 +4,7 @@ export function Home() {
   return (
     <div>
       <div className="grid grid-flow-row md:grid-flow-col gap-6 lg:gap-14 justify-items-center items-center">
-        <div className="my-auto profile-picture w-64 h-64">
+        <div className="my-auto profile-picture w-60 h-60">
           <ProfilePicture className="rounded-full shadow-2xl" />
         </div>
         <div>
