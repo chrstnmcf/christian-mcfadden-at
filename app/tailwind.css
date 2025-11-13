@@ -135,7 +135,7 @@ html {
     @apply opacity-80 scale-100;
   }
 
-  .avatar {
+  .profile-picture {
     translate: 0;
     animation: fade-in-up .75s var(--bounce-smooth);
   }

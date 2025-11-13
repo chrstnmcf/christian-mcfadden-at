@@ -1,11 +1,11 @@
-import me from './me.jpg';
+import { ProfilePicture } from './profile-picture';
 
 export function Home() {
   return (
     <div>
       <div className="grid grid-flow-row md:grid-flow-col gap-6 lg:gap-14 justify-items-center items-center">
-        <div className="my-auto avatar">
-          <img className="rounded-full shadow-2xl" src={me} alt="Christian" width={240} height={240} />
+        <div className="my-auto profile-picture w-64 h-64">
+          <ProfilePicture className="rounded-full shadow-2xl" />
         </div>
         <div>
           <h2>Hey there, I&apos;m Christian!</h2>
@@ -21,7 +21,7 @@ export function Home() {
           </p>
           <p className="text-lg">
             You want to know more?{' '}
-            <a href={`mailto:christian@mcfadden.at`} className="font-semibold">
+            <a href="mailto:christian@mcfadden.at" className="font-semibold">
               Get in touch with me!
             </a>
           </p>
