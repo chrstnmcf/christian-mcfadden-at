@@ -32,7 +32,8 @@ interface ProfilePictureProps {
 
 export function ProfilePicture({ className = '' }: ProfilePictureProps) {
   const containerRef = useRef<HTMLDivElement>(null);
-  const [imageSrc, setImageSrc] = useState<string>('');
+  const [imageSrc, setImageSrc] = useState<string>('/images/me.jpg');
+  const [enabled, setEnabled] = useState<boolean>(false);
 
   useEffect(() => {
     const container = containerRef.current;
@@ -70,8 +71,14 @@ export function ProfilePicture({ className = '' }: ProfilePictureProps) {
     }
 
     // Track pointer anywhere on the page
-    window.addEventListener('mousemove', handleMouseMove);
-    window.addEventListener('touchmove', handleTouchMove, { passive: true });
+    if (enabled) {
+      window.addEventListener('mousemove', handleMouseMove);
+      window.addEventListener('touchmove', handleTouchMove, { passive: true });
+    } else {
+      window.removeEventListener('mousemove', handleMouseMove);
+      window.removeEventListener('touchmove', handleTouchMove);
+      setImageSrc('/images/me.jpg');
+    }
 
     // Initialize at center
     const rect = container.getBoundingClientRect();
@@ -81,12 +88,13 @@ export function ProfilePicture({ className = '' }: ProfilePictureProps) {
       window.removeEventListener('mousemove', handleMouseMove);
       window.removeEventListener('touchmove', handleTouchMove);
     };
-  }, [basePath]);
+  }, [basePath, enabled]);
 
   return (
     <div
       ref={containerRef}
       className={`relative w-full h-full bg-gray-100 overflow-hidden ${className}`.trim()}
+      onClick={() => setEnabled((value) => !value)}
     >
       <picture>
         <source srcSet={imageSrc} type="image/webp" />
