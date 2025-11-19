@@ -121,7 +121,7 @@ html {
     @apply m-0 text-lg sm:text-2xl text-gray-500 dark:text-gray-400 relative;
   }
 
-  .header-title::before {
+  /* .header-title::before {
     @apply content-[''] absolute bottom-1 left-0 w-full h-2 bg-blue-300 -z-10;
     @apply opacity-0 scale-0 transform origin-center;
     @apply transition-all;
@@ -133,11 +133,38 @@ html {
 
   .header-title:hover::before {
     @apply opacity-80 scale-100;
+  } */
+
+  .header-title {
+    --speed: 0.3s;
+    --delay: 0.02s;
+    text-shadow: 0 2ex 0;
+    overflow: hidden;
+    padding: 0;
+    line-height: 1;
+
+    span {
+      position: relative;
+      display: inline-block;
+    }
+    &:not(:hover) {
+      span {
+        animation: text-down var(--speed) forwards;
+        animation-delay: calc(sibling-index() * var(--delay));
+      }
+    }
+    &:hover {
+      span {
+        animation: text-up var(--speed) forwards;
+        animation-delay: calc(sibling-index() * var(--delay));
+      }
+    }
   }
 
   .profile-picture {
     translate: 0;
     animation: fade-in-up .75s var(--bounce-smooth);
+    cursor: pointer;
   }
 }
 
@@ -150,6 +177,17 @@ html {
     100% {
       opacity: 1;
       translate: 0;
+    }
+  }
+  @keyframes text-up {
+    100% {
+      translate: 0 -2ex;
+      font-variation-settings: "wght" 600;
+    }
+  }
+  @keyframes text-down {
+    0% {
+      translate: 0 -2ex;
     }
   }
 

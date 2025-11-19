@@ -8,6 +8,7 @@ import { Bluesky } from './social/bluesky';
 import { GitHub } from './social/github';
 import { LinkedIn } from './social/linkedin';
 import Toggle from './toggle';
+import { useEffect, useLayoutEffect } from 'react';
 
 export function Header() {
   const sticky = useStickyHeader(0);
@@ -23,11 +24,27 @@ export function Header() {
     'grayscale opacity-60 hover:filter-none hover:opacity-100 transition-all',
   );
 
+  useLayoutEffect(() => {
+    const titleSegment = new Intl.Segmenter('en', { granularity: 'grapheme' });
+
+    if (document) {
+      const element = document.querySelector('.header-title');
+
+      if (element) {
+        const letters = Array.from(titleSegment.segment(element.textContent || ''));
+        const wrappedletters = letters.map((letter) => `<span>${letter.segment}</span>`);
+        element.innerHTML = wrappedletters.join('');
+      }
+    }
+  }, []);
+
   return (
     <header className={headerClass}>
       <nav className="container flex items-center justify-between text-gray-400">
         <Link to="/" className="flex flex-auto">
-          <h1 className="header-title">christian.mcfadden</h1>
+          <h1 className="header-title" aria-label="christian.mcfadden">
+            christian.mcfadden
+          </h1>
         </Link>
         <ul className="list-none grid grid-flow-col items-center gap-3 md:gap-5">
           <li>
@@ -65,10 +82,10 @@ export function Header() {
           </li>
 
           <li className="flex">
-            <Toggle 
-              label="Toggle dark mode" 
+            <Toggle
+              label="Toggle dark mode"
               active={isDark}
-              onClick={() => setTheme(isDark ? 'light' : 'dark')} 
+              onClick={() => setTheme(isDark ? 'light' : 'dark')}
             />
           </li>
         </ul>
