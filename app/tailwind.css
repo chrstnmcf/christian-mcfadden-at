@@ -142,6 +142,8 @@ html {
     overflow: hidden;
     padding: 0;
     line-height: 1;
+    text-box-trim: both;
+    text-box-edge: cap alphabetic;
 
     span {
       position: relative;
