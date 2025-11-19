@@ -4,6 +4,7 @@ const P_MIN = -15;
 const P_MAX = 15;
 const STEP = 3;
 const SIZE = 256;
+const NUMBER_OF_IMAGES = ((P_MAX - P_MIN) / STEP) ** 2;
 
 const basePath = '/images/';
 
@@ -34,6 +35,7 @@ export function ProfilePicture({ className = '' }: ProfilePictureProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const [imageSrc, setImageSrc] = useState<string>('/images/me.jpg');
   const [enabled, setEnabled] = useState<boolean>(false);
+  const preloadedImages = useRef<HTMLImageElement[]>([]);
 
   useEffect(() => {
     const container = containerRef.current;
@@ -89,6 +91,25 @@ export function ProfilePicture({ className = '' }: ProfilePictureProps) {
       window.removeEventListener('touchmove', handleTouchMove);
     };
   }, [basePath, enabled]);
+
+  useEffect(() => {
+    if (
+      !enabled ||
+      preloadedImages.current.length > 0 ||
+      preloadedImages.current.length >= NUMBER_OF_IMAGES
+    ) {
+      return;
+    }
+
+    // Preload all face images
+    for (let py = -15; py <= 15; py += 3) {
+      for (let px = -15; px <= 15; px += 3) {
+        const img = new Image();
+        img.src = `${basePath}${gridToFilename(px, py)}`;
+        preloadedImages.current.push(img);
+      }
+    }
+  }, [enabled]);
 
   return (
     <div
