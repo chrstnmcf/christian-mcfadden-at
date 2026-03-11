@@ -59,7 +59,9 @@ export function ThemeProvider({ children, initialTheme }: ThemeProviderProps) {
   }, [theme, effectiveTheme]);
 
   useEffect(() => {
-    if (theme !== 'system') return;
+    if (theme !== 'system') {
+      return;
+    }
 
     const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
 

@@ -39,11 +39,15 @@ export function ProfilePicture({ className = '' }: ProfilePictureProps) {
 
   useEffect(() => {
     const container = containerRef.current;
-    if (!container) return;
+    if (!container) {
+      return;
+    }
 
     function updateImageSrc(clientX: number, clientY: number) {
       const rect = container?.getBoundingClientRect();
-      if (!rect) return;
+      if (!rect) {
+        return;
+      }
       const centerX = rect.left + rect.width / 2;
       const centerY = rect.top + rect.height / 2;
 

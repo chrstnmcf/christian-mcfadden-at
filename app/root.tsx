@@ -9,19 +9,17 @@ import {
 } from 'react-router';
 
 import type { Route } from './+types/root';
-import { themeCookie } from './cookies.server';
 import { ThemeProvider } from './contexts/ThemeContext';
-import { type Theme } from './utils/cookies';
+import { themeCookie } from './cookies.server';
 import stylesheet from './tailwind.css?url';
+import { type Theme } from './utils/cookies';
 
-export const links: Route.LinksFunction = () => [
-  { rel: 'stylesheet', href: stylesheet },
-];
+export const links: Route.LinksFunction = () => [{ rel: 'stylesheet', href: stylesheet }];
 
 export const loader = async ({ request }: Route.LoaderArgs) => {
   const cookieHeader = request.headers.get('Cookie');
   let theme = 'system';
-  
+
   // Simple cookie parsing as fallback
   if (cookieHeader) {
     const match = cookieHeader.match(/theme=([^;]+)/);
@@ -32,17 +30,20 @@ export const loader = async ({ request }: Route.LoaderArgs) => {
       }
     }
   }
-  
+
   // Try React Router cookie parsing as primary method
   try {
     const parsedTheme = await themeCookie.parse(cookieHeader);
-    if (parsedTheme && (parsedTheme === 'light' || parsedTheme === 'dark' || parsedTheme === 'system')) {
+    if (
+      parsedTheme &&
+      (parsedTheme === 'light' || parsedTheme === 'dark' || parsedTheme === 'system')
+    ) {
       theme = parsedTheme;
     }
   } catch (error) {
     console.error('Error parsing theme cookie with React Router:', error);
   }
-  
+
   return { theme };
 };
 
@@ -50,7 +51,7 @@ export function Layout({ children, loaderData }: Route.ComponentProps & { childr
   const theme = (loaderData?.theme as Theme) || 'system';
 
   return (
-    <html lang="en" className={theme ?? ""}>
+    <html lang="en" className={theme ?? ''}>
       <head>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -68,7 +69,7 @@ export function Layout({ children, loaderData }: Route.ComponentProps & { childr
 
 export default function App({ loaderData }: Route.ComponentProps) {
   const theme = (loaderData?.theme as Theme) || 'system';
-  
+
   return (
     <ThemeProvider initialTheme={theme}>
       <Outlet />

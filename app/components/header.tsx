@@ -1,3 +1,4 @@
+import { useEffect, useLayoutEffect } from 'react';
 import { Link } from 'react-router';
 
 import { useTheme } from '~/contexts/ThemeContext';
@@ -8,7 +9,6 @@ import { Bluesky } from './social/bluesky';
 import { GitHub } from './social/github';
 import { LinkedIn } from './social/linkedin';
 import Toggle from './toggle';
-import { useEffect, useLayoutEffect } from 'react';
 
 export function Header() {
   const sticky = useStickyHeader(0);

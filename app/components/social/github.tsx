@@ -2,7 +2,6 @@ import { classNames } from '~/utils/helper';
 
 import type { SocialLogoProps } from './types';
 
-
 export function GitHub({ size = 96, className }: SocialLogoProps) {
   return (
     <svg

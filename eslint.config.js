@@ -8,7 +8,7 @@ import tseslint from 'typescript-eslint';
 export default tseslint.config(
   {
     name: 'eslintignore',
-    ignores: ['eslint.config.js', '**/*.d.ts'],
+    ignores: ['eslint.config.js', '**/*.d.ts', '**/build/**'],
   },
   { languageOptions: { globals: { ...globals.browser, ...globals.node } } },
 
