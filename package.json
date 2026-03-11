@@ -12,27 +12,27 @@
     "typecheck": "react-router typegen && tsc"
   },
   "dependencies": {
-    "@react-router/node": "^7.9.3",
-    "@react-router/serve": "^7.9.3",
-    "isbot": "^5.1.31",
-    "prettier": "^3.6.2",
-    "react": "^19.1.1",
-    "react-dom": "^19.1.1",
-    "react-router": "^7.9.3"
+    "@react-router/node": "^7.13.1",
+    "@react-router/serve": "^7.13.1",
+    "isbot": "^5.1.36",
+    "prettier": "^3.8.1",
+    "react": "^19.2.4",
+    "react-dom": "^19.2.4",
+    "react-router": "^7.13.1"
   },
   "devDependencies": {
     "@eslint/compat": "^1.4.0",
     "@eslint/eslintrc": "^3.3.1",
     "@eslint/js": "^9.36.0",
-    "@netlify/vite-plugin-react-router": "^1.0.1",
-    "@react-router/dev": "^7.9.3",
-    "@tailwindcss/vite": "^4.1.13",
+    "@netlify/vite-plugin-react-router": "^3.0.0",
+    "@react-router/dev": "^7.13.1",
+    "@tailwindcss/vite": "^4.2.1",
     "@types/eslint__js": "^9.14.0",
     "@types/node": "^22.10.7",
-    "@types/react": "^19.1.16",
-    "@types/react-dom": "^19.1.9",
+    "@types/react": "^19.2.14",
+    "@types/react-dom": "^19.2.3",
     "@typescript-eslint/parser": "^8.45.0",
-    "autoprefixer": "^10.4.21",
+    "autoprefixer": "^10.4.27",
     "cross-env": "^10.1.0",
     "eslint": "^9.36.0",
     "eslint-import-resolver-typescript": "^4.4.4",
@@ -41,11 +41,11 @@
     "eslint-plugin-react": "^7.37.5",
     "eslint-plugin-react-hooks": "^5.2.0",
     "globals": "^16.4.0",
-    "tailwindcss": "^4.1.13",
-    "typescript": "^5.9.2",
+    "tailwindcss": "^4.2.1",
+    "typescript": "^5.9.3",
     "typescript-eslint": "^8.45.0",
-    "vite": "^7.1.7",
-    "vite-tsconfig-paths": "^5.1.4"
+    "vite": "^7.3.1",
+    "vite-tsconfig-paths": "^6.1.1"
   },
   "packageManager": "pnpm@10.32.1+sha512.a706938f0e89ac1456b6563eab4edf1d1faf3368d1191fc5c59790e96dc918e4456ab2e67d613de1043d2e8c81f87303e6b40d4ffeca9df15ef1ad567348f2be"
 }
