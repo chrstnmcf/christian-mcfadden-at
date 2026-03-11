@@ -1,4 +1,4 @@
-import { useEffect, useLayoutEffect } from 'react';
+import { useLayoutEffect } from 'react';
 import { Link } from 'react-router';
 
 import { useTheme } from '~/contexts/ThemeContext';

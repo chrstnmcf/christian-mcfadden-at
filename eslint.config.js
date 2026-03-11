@@ -1,14 +1,23 @@
 // @ts-check
+import { fixupPluginRules } from '@eslint/compat';
 import eslint from '@eslint/js';
 import eslintPluginImportX from 'eslint-plugin-import-x';
 import react from 'eslint-plugin-react';
 import globals from 'globals';
 import tseslint from 'typescript-eslint';
 
+const reactCompat = fixupPluginRules(react);
+
 export default tseslint.config(
   {
     name: 'eslintignore',
-    ignores: ['eslint.config.js', '**/*.d.ts', '**/build/**'],
+    ignores: [
+      'eslint.config.js',
+      '**/*.d.ts',
+      '**/build/**',
+      '.netlify/**',
+      '.react-router/**',
+    ],
   },
   { languageOptions: { globals: { ...globals.browser, ...globals.node } } },
 
@@ -94,7 +103,7 @@ export default tseslint.config(
   {
     files: ['**/*.{jsx,tsx}'],
     plugins: {
-      react,
+      react: reactCompat,
     },
     languageOptions: {
       parserOptions: {
@@ -112,7 +121,7 @@ export default tseslint.config(
       },
     },
     rules: {
-      ...react.configs.recommended.rules,
+      ...reactCompat.configs.recommended.rules,
       'react/prop-types': 'off',
       'react/react-in-jsx-scope': 'off',
     },
